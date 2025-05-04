@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "IranSans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/IRANSansXFaNum-Regular.woff2") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "IranSans";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/IRANSansXFaNum-Bold.woff2") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "IranSans";
+    font-style: normal;
+    font-weight: 900;
+    src: url("/fonts/IRANSansXFaNum-Black.woff2") format("woff2");
+  }
+  
