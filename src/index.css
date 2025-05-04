@@ -9,7 +9,7 @@
   :root {
     &,
     &.light-mode {
-      --background-app-rgb: 255, 255, 255;
+      --background-app-rgb: 244, 245, 247;
       --color-primary-900: 74, 109, 255;
       --color-primary-800: 92, 124, 255;
       --color-primary-700: 110, 138, 255;
@@ -81,4 +81,7 @@ button:disabled {
   background-color: rgb(var(--color-secondary-100), 0.5);
   pointer-events: none;
   box-shadow: none;
+}
+label {
+  display: block;
 }
