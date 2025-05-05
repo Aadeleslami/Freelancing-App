@@ -1,6 +1,5 @@
 @import url("/fonts.css");
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +8,7 @@
   :root {
     &,
     &.light-mode {
-      --background-app-rgb: 244, 245, 247;
+      --background-app-rgb: 255, 255, 255;
       --color-primary-900: 74, 109, 255;
       --color-primary-800: 92, 124, 255;
       --color-primary-700: 110, 138, 255;
@@ -53,6 +52,19 @@
     }
   }
 }
+
+@layer components {
+  .textField__input {
+    @apply w-full py-3 px-4 rounded-xl text-secondary-900 border border-gray-100 bg-gray-100  hover:border-primary-500  focus:border-primary-500 focus:bg-white transition-all duration-300 ease-out focus:shadow-lg focus:shadow-secondary-200;
+  }
+  .btn {
+    @apply px-4 py-2 font-bold   w-full rounded-xl transition-all duration-300;
+  }
+  .btn--primary {
+    @apply px-4 py-3 bg-primary-900 text-secondary-100 hover:bg-primary-800 shadow-lg shadow-secondary-300
+  }
+}
+
 html,
 body {
   padding: 0;
