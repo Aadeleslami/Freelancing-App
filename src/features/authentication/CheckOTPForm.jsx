@@ -20,6 +20,7 @@ function CheckOTPForm() {
             borderRadius:"0.5rem"
           }}
         />
+        <button className="btn btn--primary w-full" >ارسال کد </button>
       </form>
     </div>
   );
