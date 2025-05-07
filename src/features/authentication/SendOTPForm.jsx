@@ -3,6 +3,7 @@ import TextField from "../../ui/TextField";
 import { useMutation } from "@tanstack/react-query";
 import { getOtp } from "../../services/authService";
 import toast from "react-hot-toast";
+import Loading from "../../ui/Loading";
 
 function SendOTPForm({setStep}) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -31,7 +32,9 @@ function SendOTPForm({setStep}) {
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        <button className="btn btn--primary w-full">ارسال کد تایید</button>
+        <div>
+          {!isPending? <Loading/>: <button className="btn btn--primary w-full">ارسال کد تایید</button>}
+        </div>
       </form>
     </div>
   );
