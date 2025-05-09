@@ -4,8 +4,9 @@ import OTPInput from "react-otp-input";
 import { checkOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { HiArrowRight } from "react-icons/hi";
 
-function CheckOTPForm({ phoneNumber }) {
+function CheckOTPForm({ phoneNumber,backHandler }) {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
   const { isPending, error, data, mutateAsync } = useMutation({
@@ -27,8 +28,12 @@ function CheckOTPForm({ phoneNumber }) {
     }
   };
 
+
   return (
     <div>
+      <button onClick={backHandler}  >
+        <HiArrowRight className="w-6 h-5 text-secondary-500"/>
+      </button>
       <form className="space-y-10" onSubmit={checkOtpHandler}>
         <p className="font-bold text-secondary-800">کد تایید را وارد کنید</p>
         <OTPInput

@@ -17,7 +17,12 @@ function AuthContainer() {
           />
         );
       case 2:
-        return <CheckOTPForm phoneNumber={phoneNumber} />;
+        return (
+          <CheckOTPForm
+            phoneNumber={phoneNumber}
+            backHandler={() => setStep((s) => s - 1)}
+          />
+        );
       default:
         return null;
     }
