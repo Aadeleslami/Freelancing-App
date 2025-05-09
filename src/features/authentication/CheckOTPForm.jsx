@@ -1,13 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
 import { checkOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 
-function CheckOTPForm({ phoneNumber,backHandler }) {
+function CheckOTPForm({ phoneNumber, onBack , onReSendOtp }) {
   const [otp, setOtp] = useState("");
+  const [time, setTime] = useState(5);
   const navigate = useNavigate();
   const { isPending, error, data, mutateAsync } = useMutation({
     mutationFn: checkOtp,
@@ -21,19 +22,32 @@ function CheckOTPForm({ phoneNumber,backHandler }) {
         if (data.user.role === "OWNER") navigate("/owner");
         if (data.user.role === "FREELANCER") navigate("/freelancer");
       } else {
-        navigate ("/complete-profile")
+        navigate("/complete-profile");
       }
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
   };
 
+  useEffect(() => {
+    const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [time]);
 
   return (
     <div>
-      <button onClick={backHandler}  >
-        <HiArrowRight className="w-6 h-5 text-secondary-500"/>
+      <button onClick={onBack}>
+        <HiArrowRight className="w-6 h-6 text-secondary-500" />
       </button>
+      <div className="mb-4 text-secondary-500">
+        {time > 0 ? (
+          <p>{time}ثانیه تا ارسال کد</p>
+        ) : (
+          <button onClick={onReSendOtp}>ارسال مجدد کد</button>
+        )}
+      </div>
       <form className="space-y-10" onSubmit={checkOtpHandler}>
         <p className="font-bold text-secondary-800">کد تایید را وارد کنید</p>
         <OTPInput
