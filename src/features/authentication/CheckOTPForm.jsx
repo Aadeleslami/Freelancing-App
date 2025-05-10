@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
+import Loading from "../../ui/Loading";
 
 const RESEND_TIME = 90;
 
@@ -13,7 +14,7 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
   const [otp, setOtp] = useState("");
   const [time, setTime] = useState(RESEND_TIME);
   const navigate = useNavigate();
-  const { isPending, error, data, mutateAsync } = useMutation({
+  const { isPending, mutateAsync } = useMutation({
     mutationFn: checkOtp,
   });
   const checkOtpHandler = async (e) => {
@@ -48,7 +49,7 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
         <p className="flex items-center gap-x-2 my-4">
           <span>{otpResponse?.message}</span>
           <button onClick={onBack}>
-            <CiEdit className="w-6 h-6 text-primary-900"/>
+            <CiEdit className="w-6 h-6 text-primary-900" />
           </button>
         </p>
       )}
@@ -75,7 +76,13 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
             borderRadius: "0.5rem",
           }}
         />
-        <button className="btn btn--primary w-full">ارسال کد </button>
+         <div>
+          {isPending ? (
+            <Loading />
+          ) : (
+            <button className="btn btn--primary w-full"> تایید</button>
+          )}
+        </div>
       </form>
     </div>
   );

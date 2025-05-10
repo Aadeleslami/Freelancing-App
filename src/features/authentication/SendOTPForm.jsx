@@ -1,8 +1,7 @@
 import TextField from "../../ui/TextField";
 import Loading from "../../ui/Loading";
 
-function SendOTPForm({isSendingOtp,onSubmit, phoneNumber, onChange}) {
-
+function SendOTPForm({ isSendingOtp, onSubmit, phoneNumber, onChange }) {
   return (
     <div>
       <form className="space-y-8" onSubmit={onSubmit}>
@@ -13,7 +12,11 @@ function SendOTPForm({isSendingOtp,onSubmit, phoneNumber, onChange}) {
           onChange={onChange}
         />
         <div>
-          {isSendingOtp? <Loading/>: <button className="btn btn--primary w-full">ارسال کد تایید</button>}
+          {isSendingOtp ? (
+            <Loading />
+          ) : (
+            <button className="btn btn--primary w-full">ارسال کد تایید</button>
+          )}
         </div>
       </form>
     </div>
