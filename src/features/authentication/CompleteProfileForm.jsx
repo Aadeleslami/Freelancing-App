@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import TextField from "../../ui/TextField";
+import RadioInput from "../../ui/RadioInput";
 
 function CompleteProfileForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const handlerSubmit = e => {
+    e.preventDefault()
+    
+  }
   return (
     <div className="flex items-center justify-center pt-10">
       <div className="w-full sm:max-w-sm">
-        <form className="space-y-8">
+        <form className="space-y-8" onSubmit={handlerSubmit}>
           <TextField
             label="نام و نام خانوادگی"
             name="name"
@@ -21,26 +27,22 @@ function CompleteProfileForm() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <div className="flex justify-center gap-x-8">
-            <div className="flex items-center gap-x-2 text-secondary-600">
-              <input
-                className="cursor-pointer w-4 h-4  form-radio text-primary-900 focus:ring-primary-900"
-                type="radio"
-                name="role"
-                id="OWNER"
-                value="OWNER"
-              />
-              <label htmlFor="OWNER">کارفرما</label>
-            </div>
-            <div className="flex items-center gap-x-2 text-secondary-600">
-              <input
-                className="cursor-pointer w-4 h-4  form-radio text-primary-900 focus:ring-primary-900"
-                type="radio"
-                name="role"
-                id="FREELANCER"
-                value="FREELANCER"
-              />
-              <label htmlFor="FREELANCER">فریلنسر</label>
-            </div>
+            <RadioInput
+              label="کارفرما"
+              name="role"
+              id="OWNER"
+              value="OWNER"
+              onChange={(e) => setRole(e.target.value)}
+              checked={role === "OWNER"}
+            />
+            <RadioInput
+              label="فریلنسر"
+              name="role"
+              id="FREELANCER"
+              value="FREELANCER"
+              onChange={(e) => setRole(e.target.value)}
+              checked={role==="FREELANCER"}
+            />
           </div>
           <button className="btn btn--primary">تایید</button>
         </form>
