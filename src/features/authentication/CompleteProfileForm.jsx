@@ -16,7 +16,7 @@ function CompleteProfileForm() {
   const handlerSubmit =async (e) => {
     e.preventDefault();
     try {
-      const data =  await mutateAsync({role,name,email})
+      const data =  await mutateAsync({name,email,role})
       toast.success(data.message)
       
     } catch (error) {

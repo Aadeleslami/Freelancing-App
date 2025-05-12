@@ -5,7 +5,7 @@ function RadioInput({label,name,id,value,onChange,checked}) {
     <div>
           <div className="flex items-center gap-x-2 text-secondary-600">
               <input
-                className="cursor-pointer w-4 h-4  form-radio text-primary-900 focus:ring-primary-900"
+                className="cursor-pointer w-4 h-4  form-radio text-primary-900 focus:ring-0"
                 type="radio"
                 name={name}
                 id={id}
@@ -13,7 +13,7 @@ function RadioInput({label,name,id,value,onChange,checked}) {
                 onChange={onChange}
                 checked={checked}
               />
-              <label htmlFor="OWNER">{label}</label>
+              <label htmlFor={id}>{label}</label>
             </div>
     </div>
   )
