@@ -1,15 +1,29 @@
 import React, { useState } from "react";
 import TextField from "../../ui/TextField";
 import RadioInput from "../../ui/RadioInput";
+import Loading from "../../ui/Loading";
+import { useMutation } from "@tanstack/react-query";
+import { completeProfile } from "../../services/authService";
+import toast from "react-hot-toast";
 
 function CompleteProfileForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
-  const handlerSubmit = e => {
-    e.preventDefault()
-    
-  }
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: completeProfile,
+  });
+  const handlerSubmit =async (e) => {
+    e.preventDefault();
+    try {
+      const data =  await mutateAsync({role,name,email})
+      toast.success(data.message)
+      
+    } catch (error) {
+        toast.error(error?.response?.data?.message)
+        
+    }
+  };
   return (
     <div className="flex items-center justify-center pt-10">
       <div className="w-full sm:max-w-sm">
@@ -41,10 +55,16 @@ function CompleteProfileForm() {
               id="FREELANCER"
               value="FREELANCER"
               onChange={(e) => setRole(e.target.value)}
-              checked={role==="FREELANCER"}
+              checked={role === "FREELANCER"}
             />
           </div>
-          <button className="btn btn--primary">تایید</button>
+          <div>
+            {isPending ? (
+              <Loading />
+            ) : (
+              <button className="btn btn--primary w-full"> تایید</button>
+            )}
+          </div>
         </form>
       </div>
     </div>
