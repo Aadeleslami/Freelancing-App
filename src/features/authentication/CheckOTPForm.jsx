@@ -22,12 +22,14 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
     try {
       const data = await mutateAsync({ phoneNumber, otp });
       toast.success(data.message);
-      if (data.user.isActive) {
-        if (data.user.role === "OWNER") navigate("/owner");
-        if (data.user.role === "FREELANCER") navigate("/freelancer");
-      } else {
-        navigate("/complete-profile");
+      if (!data.user.isActive) return navigate("/complete-profile");
+      if (data.user.status !== 2) {
+        navigate("/");
+        toast("پروفایل شما در انتظار تایید است");
+        return;
       }
+      if (data.user.role === "OWNER") return navigate("/owner");
+      if (data.user.role === "FREELANCER") return navigate("/freelancer");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -76,7 +78,7 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
             borderRadius: "0.5rem",
           }}
         />
-         <div>
+        <div>
           {isPending ? (
             <Loading />
           ) : (
