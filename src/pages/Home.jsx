@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 function Home() {
-  return (
-    <div>Home</div>
-  )
+  return <div className="container xl:max-w-screen-xl">
+    <h1>صفحه اصلی</h1>
+  </div>;
 }
 
-export default Home
+export default Home;
