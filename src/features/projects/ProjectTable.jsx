@@ -2,6 +2,7 @@ import useOwnerProjects from "./useOwnerProjects";
 import Loading from "../../ui/Loading";
 import Empty from "../../ui/Empty";
 import truncateText from "../../utils/truncateText";
+import toLocalDateShort from "../../utils/toLocalDateShort";
 
 function ProjectTable() {
   const { isLoading, projects } = useOwnerProjects();
@@ -31,7 +32,7 @@ function ProjectTable() {
               <td>{project.title}</td>
               <td>{truncateText(project.category.title,30)}</td>
               <td>{project.budget}</td>
-              <td>{project.deadline}</td>
+              <td>{toLocalDateShort(project.deadline)}</td>
               <td >
                 <div className="flex flex-wrap items-center gap-2 max-w-[200px]">
                   {project.tags.map((tag) => (
