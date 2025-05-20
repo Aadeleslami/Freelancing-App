@@ -1,7 +1,9 @@
 import useOwnerProjects from "./useOwnerProjects"
 
 function ProjectTable() {
-    const{isLoading,projects}=useOwnerProjects()
+    const{isLoading,data}=useOwnerProjects()
+    console.log(data);
+    
   return (
     <div>ProjectTable</div>
   )
