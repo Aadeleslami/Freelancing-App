@@ -4,8 +4,11 @@ import toLocalDateShort from '../../utils/toLocalDateShort'
 import Table from '../../ui/Table'
 import { TbPencilMinus } from 'react-icons/tb'
 import { HiOutlineTrash } from 'react-icons/hi'
+import Modal from '../../ui/Modal'
+import { useState } from 'react'
 
 function ProjectRow({project,index}) {
+  const [editOpen,setEditOpen] = useState(false)
   return (
   <Table.Row >
                       <td>{index + 1}</td>
@@ -32,9 +35,10 @@ function ProjectRow({project,index}) {
               </td>
                 <td>
             <div className='flex items-center gap-x-4' >
-                <button>
+                <button onClick={()=>setEditOpen(true)}>
                   <TbPencilMinus className='w-5 h-5 text-primary-900'/>
                 </button>
+                <Modal title="Modal title" open={editOpen} onClose={()=> setEditOpen(false)}>this is modal</Modal>
                 <button>
                   <HiOutlineTrash className='w-5 h-5 text-error'/>
                 </button>

@@ -26,7 +26,7 @@ function CompleteProfileForm() {
         return;
       }
       if (data.user.role === "OWNER") return navigate("/owner");
-      if (data.user.role === "FREELACER") return navigate("/freelancer");
+      if (data.user.role === "FREELANCER") return navigate("/freelancer");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
