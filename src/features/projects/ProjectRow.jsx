@@ -2,6 +2,8 @@ import truncateText from '../../utils/truncateText'
 import { toPersianNumbersWithComma } from '../../utils/toPersianNumbers'
 import toLocalDateShort from '../../utils/toLocalDateShort'
 import Table from '../../ui/Table'
+import { TbPencilMinus } from 'react-icons/tb'
+import { HiOutlineTrash } from 'react-icons/hi'
 
 function ProjectRow({project,index}) {
   return (
@@ -28,7 +30,16 @@ function ProjectRow({project,index}) {
                   <span className="badge badge--danger">بسته</span>
                 )}
               </td>
-              <td>...</td>
+                <td>
+            <div className='flex items-center gap-x-4' >
+                <button>
+                  <TbPencilMinus className='w-5 h-5 text-primary-900'/>
+                </button>
+                <button>
+                  <HiOutlineTrash className='w-5 h-5 text-error'/>
+                </button>
+            </div>
+              </td>
             </Table.Row>
   )
 }
