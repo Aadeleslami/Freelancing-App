@@ -7,10 +7,12 @@ import { HiOutlineTrash } from "react-icons/hi";
 import Modal from "../../ui/Modal";
 import { useState } from "react";
 import ConfirmDelete from "../../ui/ConfirmDelete";
+import useRemoveProject from "./useRemoveProject";
 
 function ProjectRow({ project, index }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const { removeProject, isDeleting } = useRemoveProject();
   return (
     <Table.Row>
       <td>{index + 1}</td>
@@ -62,7 +64,11 @@ function ProjectRow({ project, index }) {
                 resourceName={project.title}
                 onClose={() => setIsDeleteOpen(false)}
                 disabled={false}
-                onConfirm={()=>{}}
+                onConfirm={() =>
+                  removeProject(project._id, {
+                    onSuccess: () => setIsDeleteOpen(false),
+                  })
+                }
               />
             </Modal>
           </>
