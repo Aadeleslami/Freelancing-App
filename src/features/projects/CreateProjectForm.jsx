@@ -17,8 +17,31 @@ function CreateProjectForm() {
         required
         validationScheme={{
           required: "عنوان ضروری است",
-          minLength: { value: 10, message: "طول این عنوان نا معتبر است" },
+          minLength: { value: 10, message: "طول این عنوان نامعتبر است" },
         }}
+        errors={errors}
+      />
+          <TextField
+        label="توضیحات"
+        register={register}
+        name="description"
+        required
+        validationScheme={{
+          required: "توضیحات ضروری است",
+          minLength: { value: 10, message: "طول این توضیح نامعتبر است" },
+        }}
+        errors={errors}
+      />
+          <TextField
+        label="بودجه"
+        register={register}
+        name="budget"
+        required
+        validationScheme={{
+          required: "بودجه ضروری است",
+          minLength: { value: 10, message: "مقدار این بودجه نامعتبر است" },
+        }}
+        type="number"
         errors={errors}
       />
       <button type="submit" className="btn btn--primary w-full">تایید</button>
