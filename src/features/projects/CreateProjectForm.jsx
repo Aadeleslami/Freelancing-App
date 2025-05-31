@@ -1,9 +1,29 @@
-import React from 'react'
+import React from "react";
+import TextField from "../../ui/TextField";
+import { useForm } from "react-hook-form";
 
 function CreateProjectForm() {
+  const { register , formState:{errors},handleSubmit } = useForm();
+  const onSubmit = (data)=>{
+    console.log(data);
+    
+  }
   return (
-    <div className=''></div>
-  )
+    <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
+      <TextField
+        label="عنوان پروژه"
+        register={register}
+        name="title"
+        required
+        validationScheme={{
+          required: "عنوان ضروری است",
+          minLength: { value: 10, message: "طول این عنوان نا معتبر است" },
+        }}
+        errors={errors}
+      />
+      <button type="submit" className="btn btn--primary w-full">تایید</button>
+    </form>
+  );
 }
 
-export default CreateProjectForm
+export default CreateProjectForm;
