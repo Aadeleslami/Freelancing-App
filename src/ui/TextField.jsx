@@ -6,7 +6,7 @@ function TextField({
   register,
   type = "text",
   required,
-  validationScheme,
+  validationSchema,
   errors,
 }) {
   return (
@@ -16,7 +16,7 @@ function TextField({
       </label>
       <input
         id={name}
-        {...register(name, validationScheme)}
+        {...register(name, validationSchema)}
         className="textField__input"
         type={type}
         autoComplete="off"

@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 
 function AuthContainer() {
-  const {register,handleSubmit,getValues} = useForm()
+  const { register, handleSubmit, getValues } = useForm();
   const [step, setStep] = useState(2);
   const {
     isPending: isSendingOtp,
@@ -19,7 +19,7 @@ function AuthContainer() {
 
   const sendOtpHandler = async (data) => {
     try {
-      const {message} = await mutateAsync(data);
+      const { message } = await mutateAsync(data);
       setStep(2);
       toast.success(message);
     } catch (error) {
