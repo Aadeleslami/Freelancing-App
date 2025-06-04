@@ -6,9 +6,8 @@ function RadioInput({
   id,
   value,
   register,
-  checked,
   validationSchema,
-  errors,
+  watch
 }) {
   return (
     <div>
@@ -20,14 +19,10 @@ function RadioInput({
           {...register(name, validationSchema)}
           id={id}
           value={value}
-          checked={checked}
+          checked={watch(name) === value}
         />
         <label htmlFor={id}>{label}</label>
-      {errors && errors[name] && (
-        <span className="text-error block text-sm mt-2">
-          {errors[name]?.message}
-        </span>
-      )}
+     
       </div>
     </div>
   );
