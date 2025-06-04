@@ -1,18 +1,18 @@
 import RadioInput from "./RadioInput";
 
 function RadioInputGroup({ register, watch, errors, config }) {
-  const { name, validationSchema, options } = config;
+  const { name, validationSchema={}, options } = config;
   return (
     <div>
       <div className="flex flex-wrap items-center justify-center gap-x-8">
-        {options.map((option) => (
+        {options.map(({label,value}) => (
           <RadioInput
-            key={option.value}
-            label={option.label}
+            key={value}
+            label={label}
             register={register}
             name={name}
-            id={option.value}
-            value={option.value}
+            id={value}
+            value={value}
             watch={watch}
             validationSchema={validationSchema}
             errors={errors}
